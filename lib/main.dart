@@ -596,7 +596,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Secure Vault'),
+        title: const Text('File Ghost'),
         actions: [
           IconButton(icon: const Icon(Icons.logout), onPressed: _logout, tooltip: 'Logout'),
           IconButton(icon: const Icon(Icons.refresh), onPressed: _refreshFiles, tooltip: 'Refresh'),
