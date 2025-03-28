@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileGhost - Secure File Vault</title>
+    <style>
+        :root {
+            --primary: #7c4dff;
+            --primary-dark: #4a00e0;
+            --secondary: #ff4081;
+            --dark: #121212;
+            --light: #f5f5f5;
+            --gray: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark), var(--gray));
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(124, 77, 255, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark), var(--gray));
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .features {
+            padding: 80px 0;
+            background-color: var(--gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 36px;
+            color: var(--primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s;
+            border: 1px solid rgba(124, 77, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(124, 77, 255, 0.3);
+        }
+
+        .feature-card i {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .screenshots {
+            padding: 80px 0;
+            background-color: var(--dark);
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .screenshot {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .screenshot:hover {
+            transform: scale(1.03);
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--gray), var(--dark));
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-ghost"></i>
+                    <span>FileGhost</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#screenshots">Screenshots</a>
+                    <a href="#download">Download</a>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Secure Your Files with FileGhost</h1>
+            <p>The ultimate mobile vault for your sensitive files with military-grade encryption and biometric
+                protection.</p>
+            <div class="btn-group">
+                <a href="#download" class="btn"><i class="fab fa-google-play"></i> Download Now</a>
+                <a href="#features" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-fingerprint"></i>
+                    <h3>Biometric Lock</h3>
+                    <p>Secure access with fingerprint or face recognition for maximum protection.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>PIN Protection</h3>
+                    <p>4-digit PIN with recovery options in case you forget your credentials.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-file-shield"></i>
+                    <h3>File Encryption</h3>
+                    <p>All files are encrypted and hidden from system scans with .nomedia.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-eye-slash"></i>
+                    <h3>Stealth Mode</h3>
+                    <p>Files are completely hidden from other apps and gallery viewers.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cloud-download-alt"></i>
+                    <h3>Easy Import</h3>
+                    <p>Quickly add files from your device storage with just a few taps.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Cross-Platform</h3>
+                    <p>Works seamlessly on both Android and iOS devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="screenshots" id="screenshots">
+        <div class="container">
+            <h2 class="section-title">App Screenshots</h2>
+            <div class="screenshot-grid">
+                <div class="screenshot">
+                    <img src="assets/splash.jpg" alt="Splash Screen">
+                </div>
+                <div class="screenshot">
+                    <img src="assets/lock.jpg" alt="PIN Screen">
+                </div>
+                <div class="screenshot">
+                    <img src="assets/fileman.jpg" alt="File Browser">
+                </div>
+                <div class="screenshot">
+                    <img src="assets/settings.jpg" alt="Settings">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="download" id="download">
+        <div class="container">
+            <h2 class="section-title">Download FileGhost</h2>
+            <div style="text-align: center; margin-bottom: 40px;">
+                <p style="max-width: 600px; margin: 0 auto 30px;">Available now on Github for code and android releases
+                </p>
+                <div class="btn-group">
+                    <a href="https://github.com/technolenz/fileghost" class="btn"><i
+                            class="fab fa-github"></i>Github</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 20px;">
+                <i class="fas fa-ghost"></i>
+                <span>FileGhost</span>
+            </div>
+            <p class="copyright">© 2023 FileGhost. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
